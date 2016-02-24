@@ -3,7 +3,7 @@ import java.net.*;
 import java.io.*;
 
 /**
- * Implementa un servidor multihilo de eco usando TCP.
+ * Implementa un servidor multihilo usando TCP.
  *
  * @author d.mendez.alvarez@udc.es
  */
@@ -37,9 +37,9 @@ public class ServidorTCP {
                 thread.start();
             }
         } catch (SocketTimeoutException e) {
-            System.err.println("> 30 segs sin recibir nada");
+            System.err.println("> SERVIDOR: 30 segs sin recibir nada");
         } catch (Exception e) {
-            System.err.println("> Error: " + e.getMessage());
+            System.err.println("> ERROR SERVIDOR: " + e.getMessage());
             e.printStackTrace(System.err);
         } finally {
             //Cerramos el socket

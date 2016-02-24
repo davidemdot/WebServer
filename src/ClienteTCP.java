@@ -1,6 +1,4 @@
 
-
-
 import java.net.*;
 import java.io.*;
 
@@ -13,7 +11,7 @@ public class ClienteTCP {
 
     public static void main(String[] args) {
         if (args.length != 3) {
-            System.err.println("Formato: ClienteTCP <maquina> <puerto> <mensaje>");
+            System.err.println("> Formato: ClienteTCP <maquina> <puerto> <mensaje>");
             System.exit(-1);
         }
 
@@ -29,7 +27,7 @@ public class ClienteTCP {
 
             // Creamos el socket y establecemos la conexión con el servidor
             socket = new Socket(dirServidor, puertoServidor);
-            System.out.println("CLIENTE: Conexion establecida con "
+            System.out.println("> CLIENTE: Conexion establecida con "
                     + dirServidor.toString() + " al puerto " + puertoServidor);
 
             // Establecemos un timeout de 30 segs
@@ -43,20 +41,20 @@ public class ClienteTCP {
             PrintWriter sSalida = new PrintWriter(socket.getOutputStream(), true);
 
             // Enviamos el mensaje al servidor
-            System.out.println("CLIENTE: Enviando " + mensaje);
+            System.out.println("> CLIENTE: Enviando " + mensaje);
             sSalida.println(mensaje);
 
             // Recibimos la respuesta del servidor
             String recibido = sEntrada.readLine();
-            System.out.println("CLIENTE: Recibido " + recibido);
+            System.out.println("> CLIENTE: Recibido " + recibido);
 
             // Cerramos los flujos y el socket para liberar la conexión
             sSalida.close();
             sEntrada.close();
         } catch (SocketTimeoutException e) {
-            System.err.println("30 segs sin recibir nada");
+            System.err.println("> CLIENTE: 30 segs sin recibir nada");
         } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("> ERROR CLIENTE: " + e.getMessage());
         } finally {
             try {
                 socket.close();
